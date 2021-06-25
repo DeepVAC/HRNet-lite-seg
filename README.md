@@ -83,14 +83,16 @@ python train.py --rank 1 --gpu 1
 - 测试相关配置
 
 ```python
-
-
+config.core.LiteHRNetTest = config.core.LiteHRNetTrain.clone()
+config.core.LiteHRNetTest.model_reinterpret_cast = False
+config.core.LiteHRNetTest.test_sample_path = 'your test image dir'
+config.core.LiteHRNetTest.model_path = 'your trained model path'
 ```
 
 - 加载模型(*.pth)
 
 ```python
-config.core.LiteHRNetTrain.model_path = <trained-model-path>
+config.core.LiteHRNetTest.model_path = <trained-model-path>
 ```
 
 - 运行测试脚本：
@@ -119,6 +121,7 @@ config.cast.ScriptCast.model_dir = "./script.pt"
 
 ```python
 config.core.LiteHRNetTrain.jit_model_path = <torchscript-model-path>
+config.core.LiteHRNetTest.jit_model_path = <torchscript-model-path>
 ```
 
 ## 8. 使用静态量化模型
@@ -138,6 +141,7 @@ config.cast.ScriptCast.static_quantize_dir = "./script.sq"
 
 ```python
 config.core.LiteHRNetTrain.jit_model_path = <static-quantize-model-path>
+config.core.LiteHRNetTest.jit_model_path = <static-quantize-model-path>
 ```
 - 动态量化模型对应的配置参数为config.cast.TraceCast.dynamic_quantize_dir(或者config.cast.ScriptCast.dynamic_quantize_dir)
 
