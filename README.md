@@ -84,7 +84,6 @@ python train.py --rank 1 --gpu 1
 
 ```python
 config.core.LiteHRNetTest = config.core.LiteHRNetTrain.clone()
-config.core.LiteHRNetTest.model_reinterpret_cast = False
 config.core.LiteHRNetTest.test_sample_path = 'your test image dir'
 config.core.LiteHRNetTest.model_path = 'your trained model path'
 ```
